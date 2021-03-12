@@ -1,0 +1,35 @@
+---
+on: [push]
+name: Tests
+jobs:
+  test-success-default:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Create example package-lock.json file
+        run: touch package-lock.json && echo '{ "lockfileVersion": 2 }'
+      - name: Run lockfile check action
+        # Use the action in this repository.
+        uses: ./
+
+  test-success-version:
+    runs-on: ubuntu-latest
+    name: Test missing lockfile for npm
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Create example package-lock.json file
+        run: touch package-lock.json && echo '{ "lockfileVersion": 1 }'
+      - name: Run lockfile check action
+        # Use the action in this repository.
+        uses: ./
+        with:
+          version: 1
+
+  # test-fail-missing-file:
+  #
+  # test-fail-default:
+  #
+  # test-fail-version:

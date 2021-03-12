@@ -1,0 +1,15 @@
+---
+name: 'npm Lockfile Version'
+description: 'Make sure the Lockfile version is correct in your project'
+branding:
+  icon: 'hash'
+  color: 'green'
+inputs:
+  version:
+    description: 'Optionally specify the lockfile version'
+    default: 2
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.version }}
