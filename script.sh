@@ -8,6 +8,6 @@ test -f "package-lock.json" || (echo "Error! Expected a package-lock.json file b
 VER=`cat package-lock.json | jq '.lockfileVersion'`
 
 if [ "$1" != "$VER" ]; then
-    echo "Error! package-lock.json lockfileVersion is $VER but expected $2" && exit 1
+    echo "Error! package-lock.json lockfileVersion is $VER but expected $1" && exit 1
 fi
 
